@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import Graph from '@/atoms/graph'
+import Graph from '@/atoms/Graph'
+import CheckboxList from '@/molecules/CheckboxList'
 import styles from '@/styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h2>都道府県別人口数の推移</h2>
+        <CheckboxList />
         <Graph />
       </main>
 
