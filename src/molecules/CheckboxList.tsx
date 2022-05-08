@@ -7,11 +7,12 @@ const CheckboxList = () => {
   const [checkedItems, setCheckedItems] = useState({})
 
   const handleChange = (e: any, code: string) => {
-    setCheckedItems({
+    const tempCheckedItems = {
       ...checkedItems,
       [code]: e.target.checked,
-    })
-    console.log(checkedItems)
+    }
+    setCheckedItems(tempCheckedItems)
+    console.log(tempCheckedItems)
   }
 
   return (
