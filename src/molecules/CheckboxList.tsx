@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Checkbox from '@/atoms/Checkbox'
+import { getPopulation } from '@/services/api/getPopulation'
 import { prefectures } from '@/static/prefectures'
 import styles from '@/styles/Home.module.css'
 
@@ -13,6 +14,8 @@ const CheckboxList = () => {
     }
     setCheckedItems(tempCheckedItems)
     console.log(tempCheckedItems)
+
+    e.target.checked ? getPopulation(code) : 'stateから対象データ削除'
   }
 
   return (
