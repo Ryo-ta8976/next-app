@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import { usePrefectureContext } from '../context/PrefectureContext'
+import { PrefecturePopulationList } from '../type/PrefecturePopulationList'
 import Checkbox from '@/atoms/Checkbox'
 import { getPopulation } from '@/services/api/getPopulation'
 import { prefectures } from '@/static/prefectures'
 import styles from '@/styles/Home.module.css'
 
 const CheckboxList = () => {
+  const { prefecturePopulationList, setPrefecturePopulationList } = usePrefectureContext()
   const [checkedItems, setCheckedItems] = useState({})
 
   const handleChange = (e: any, code: string) => {
@@ -13,9 +16,19 @@ const CheckboxList = () => {
       [code]: e.target.checked,
     }
     setCheckedItems(tempCheckedItems)
-    console.log(tempCheckedItems)
 
-    e.target.checked ? getPopulation(code) : 'stateから対象データ削除'
+    e.target.checked
+      ? getPopulation(code, prefecturePopulationList, setPrefecturePopulationList)
+      : deletePrefecturePopulationList(code, prefecturePopulationList, setPrefecturePopulationList)
+  }
+
+  const deletePrefecturePopulationList = (
+    code: string,
+    prefecturePopulationList: PrefecturePopulationList,
+    setPrefecturePopulationList: ({}) => void,
+  ) => {
+    delete prefecturePopulationList[code]
+    setPrefecturePopulationList({ ...prefecturePopulationList })
   }
 
   return (
