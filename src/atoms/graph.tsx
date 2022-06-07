@@ -12,6 +12,8 @@ import faker from 'faker'
 import type { NextPage } from 'next'
 import React from 'react'
 import { Line } from 'react-chartjs-2'
+import { usePrefectureContext } from '../context/PrefectureContext'
+import { prefectures } from '@/static/prefectures'
 import styles from '@/styles/Home.module.css'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
@@ -31,25 +33,30 @@ export const options = {
 
 const labels = ['1980年', '1990年', '2000年', '2010年', '2020年']
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 10000 })),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 10000 })),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-}
-
 const Graph: NextPage = () => {
+  const { prefecturePopulationList } = usePrefectureContext()
+
+  const data = {
+    labels,
+    datasets: Object.entries(prefecturePopulationList).map(([key, value]) => {
+      const r = faker.datatype.number({ min: 0, max: 255 })
+      const g = faker.datatype.number({ min: 0, max: 255 })
+      const b = faker.datatype.number({ min: 0, max: 255 })
+      return {
+        label: prefectures[key],
+        data: [
+          value.data[4]['value'],
+          value.data[6]['value'],
+          value.data[8]['value'],
+          value.data[10]['value'],
+          value.data[12]['value'],
+        ],
+        borderColor: `rgb(${r}, ${g}, ${b})`,
+        backgroundColor: `rgba(${r}, ${g}, ${b}, 0.5)`,
+      }
+    }),
+  }
+
   return <Line options={options} data={data} />
 }
 
