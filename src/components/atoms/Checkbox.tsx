@@ -1,5 +1,3 @@
-import styles from '@/styles/Home.module.css'
-
 type Props = {
   id: number
   value: string
@@ -10,7 +8,7 @@ type Props = {
 const Checkbox = ({ id, value, checked, onChange }: Props) => {
   return (
     <input
-      id={id}
+      key={id}
       type='checkbox'
       name='inputNames'
       checked={checked}

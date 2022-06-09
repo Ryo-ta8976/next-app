@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { usePrefectureContext } from '../context/PrefectureContext'
+import { usePrefectureContext } from '../../context/PrefectureContext'
 import { PrefecturePopulationList } from '../type/PrefecturePopulationList'
-import Checkbox from '@/atoms/Checkbox'
+import Checkbox from '@/components/atoms/Checkbox'
 import { getPopulation } from '@/services/api/getPopulation'
 import { prefectures } from '@/static/prefectures'
-import styles from '@/styles/Home.module.css'
 
 const CheckboxList = () => {
   const { prefecturePopulationList, setPrefecturePopulationList } = usePrefectureContext()
@@ -30,7 +29,6 @@ const CheckboxList = () => {
     delete prefecturePopulationList[code]
     setPrefecturePopulationList({ ...prefecturePopulationList })
   }
-  console.log(prefectures)
 
   return (
     <>

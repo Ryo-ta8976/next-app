@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { PrefectureProvider } from '../context/PrefectureContext'
-import Graph from '@/atoms/Graph'
-import CheckboxList from '@/molecules/CheckboxList'
+import Graph from '@/components/atoms/Graph'
+import CheckboxList from '@/components/molecules/CheckboxList'
 import styles from '@/styles/Home.module.css'
 
 const Home: NextPage = () => {

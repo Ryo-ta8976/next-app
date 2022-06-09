@@ -12,9 +12,8 @@ import faker from 'faker'
 import type { NextPage } from 'next'
 import React from 'react'
 import { Line } from 'react-chartjs-2'
-import { usePrefectureContext } from '../context/PrefectureContext'
+import { usePrefectureContext } from '../../context/PrefectureContext'
 import { prefectures } from '@/static/prefectures'
-import styles from '@/styles/Home.module.css'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
