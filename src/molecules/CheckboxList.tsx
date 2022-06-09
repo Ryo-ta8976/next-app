@@ -30,24 +30,37 @@ const CheckboxList = () => {
     delete prefecturePopulationList[code]
     setPrefecturePopulationList({ ...prefecturePopulationList })
   }
+  console.log(prefectures)
 
   return (
     <>
       <p>以下から表示したい都道府県をチェックしてください</p>
-      <div>
-        {Object.entries(prefectures).map(([key, value], index) => {
-          return (
-            <label key={index}>
-              <Checkbox
-                id={index}
-                value={value}
-                checked={key in checkedItems ? checkedItems[key] : false}
-                onChange={(e) => handleChange(e, key)}
-              />
-              {value}
-            </label>
-          )
-        })}
+      <div
+        style={{
+          height: '200px',
+          width: '40%',
+          border: '1px solid #333',
+          padding: '10px',
+          overflow: 'scroll',
+          minWidth: '300px',
+        }}
+      >
+        {Object.keys(prefectures)
+          .sort()
+          .map((key, index) => {
+            return (
+              <label key={index}>
+                <Checkbox
+                  id={index}
+                  value={prefectures[key]}
+                  checked={key in checkedItems ? checkedItems[key] : false}
+                  onChange={(e) => handleChange(e, key)}
+                />
+                {prefectures[key]}
+                <br />
+              </label>
+            )
+          })}
       </div>
     </>
   )
