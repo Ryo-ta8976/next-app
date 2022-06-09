@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { usePrefectureContext } from '../../context/PrefectureContext'
-import { PrefecturePopulationList } from '../type/PrefecturePopulationList'
 import Checkbox from '@/components/atoms/Checkbox'
+import { usePrefectureContext } from '@/context/PrefectureContext'
 import { getPopulation } from '@/services/api/getPopulation'
 import { prefectures } from '@/static/prefectures'
+import { PrefecturePopulationList } from '@/type/PrefecturePopulationList.type'
 
 const CheckboxList = () => {
   const { prefecturePopulationList, setPrefecturePopulationList } = usePrefectureContext()
-  const [checkedItems, setCheckedItems] = useState({})
+  const [checkedItems, setCheckedItems] = useState<{ [code: string]: boolean }>({})
 
   const handleChange = (e: any, code: string) => {
     const tempCheckedItems = {
@@ -24,7 +24,7 @@ const CheckboxList = () => {
   const deletePrefecturePopulationList = (
     code: string,
     prefecturePopulationList: PrefecturePopulationList,
-    setPrefecturePopulationList: ({}) => void,
+    setPrefecturePopulationList: React.Dispatch<React.SetStateAction<PrefecturePopulationList>>,
   ) => {
     delete prefecturePopulationList[code]
     setPrefecturePopulationList({ ...prefecturePopulationList })
