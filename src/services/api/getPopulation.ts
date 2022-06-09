@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { PrefecturePopulationList } from '../type/PrefecturePopulationList'
+import { PrefecturePopulationList } from '../../type/PrefecturePopulationList.type'
 
 export const getPopulation = (
   code: string,
   prefecturePopulationList: PrefecturePopulationList,
-  setPrefecturePopulationList: ({}) => void,
+  setPrefecturePopulationList: React.Dispatch<React.SetStateAction<PrefecturePopulationList>>,
 ) => {
   axios
     .get(
@@ -16,6 +16,7 @@ export const getPopulation = (
       },
     )
     .then((response) => {
+      console.log(response.data.result.data[0])
       setPrefecturePopulationList({
         ...prefecturePopulationList,
         [code]: response.data.result.data[0],

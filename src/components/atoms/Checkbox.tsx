@@ -1,8 +1,10 @@
+import { ChangeEventHandler } from 'react'
+
 type Props = {
   id: number
   value: string
   checked: boolean
-  onChange: (e: any, code: string) => void
+  onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 const Checkbox = ({ id, value, checked, onChange }: Props) => {

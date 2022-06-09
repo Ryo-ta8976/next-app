@@ -1,3 +1,6 @@
 export interface PrefecturePopulationList {
-  [code: string]: any
+  [code: string]: {
+    label: string
+    data: { year: number; value: number }[]
+  }
 }

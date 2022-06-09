@@ -1,4 +1,4 @@
-export const prefectures = {
+export const prefectures: { [code: string]: string } = {
   '01': '北海道',
   '02': '青森県',
   '03': '岩手県',
